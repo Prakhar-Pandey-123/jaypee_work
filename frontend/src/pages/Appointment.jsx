@@ -115,68 +115,162 @@ const Appointment=()=>{
     },[docSlots])
 
     return docInfo && (
-        <div>
-            {/* doctor details */}
-        <div className="flex flex-col sm:flex-row gap-4">
-            <div>
-                <img className="bg-primary w-full sm:max-w-72 rounded-lg " src={docInfo.image} alt=""></img>
-            </div>
-            <div className="flex-1 border-gray-400 rounded-lg p-8 py-7 bg-white mx-2 sm:mx-0 mt-[-80px] sm:mt-0">
-                {/* name,degree,experience */}
-                <p className="flex items-center gap-2 text-2xl font-medium text-gray-900">{docInfo.name}<img className="w-5" src={assets.verified_icon} alt=""></img></p>
-                <div className="flex items-center gap-2 text-sm mt-1 text-gray-600">
-                <p>
-                    {docInfo.degree}-{docInfo.speciality}
-                </p>
-                <button className="py-0.5 px-2 border text-xs rounded-full">
-                {docInfo.experience}
-                </button>
-                </div>
-                {/* doctor about */}
-                <div>
-                    <p className="flex items-center gap-1 text-sm font-medium text-gray-900 mt-3">About
-                        <img src={assets.info_icon} alt=""></img></p>
-                    <p className="text-sm text-gray-500 max-w-[700px] mt-1">
-                        {docInfo.about}
-                        </p>
-                </div>
-            <p className="text-gray-500 font-medium mt-4">Appointment fee:<span className="text-gray-600 font-bold">₹ {docInfo.fees}</span></p>
+  <div className="min-h-screen bg-gradient-to-b from-sky-50 via-blue-50 to-cyan-50 px-4 md:px-8 py-10">
 
+    {/* Doctor Profile Section */}
+    <div className="max-w-7xl mx-auto">
+      <div className="flex flex-col lg:flex-row gap-8 items-stretch">
+
+        {/* Doctor Image */}
+        <div className="lg:w-[320px]">
+          <img
+            className="w-full rounded-[32px] bg-gradient-to-br from-cyan-400 to-blue-500 shadow-2xl"
+            src={docInfo.image}
+            alt=""
+          />
+        </div>
+
+        {/* Doctor Info Card */}
+        <div className="flex-1 bg-gradient-to-br from-white via-blue-50 to-cyan-50 rounded-[32px] p-8 md:p-10 shadow-xl border border-blue-100">
+
+          <div className="flex items-center gap-2">
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-800">
+              {docInfo.name}
+            </h1>
+
+            <img
+              className="w-6 h-6"
+              src={assets.verified_icon}
+              alt=""
+            />
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 mt-4">
+            <p className="text-slate-600 text-lg">
+              {docInfo.degree} • {docInfo.speciality}
+            </p>
+
+            <span className="px-4 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">
+              {docInfo.experience}
+            </span>
+          </div>
+
+          {/* About Section */}
+          <div className="mt-8">
+            <div className="flex items-center gap-2 mb-3">
+              <h2 className="text-lg font-semibold text-slate-800">
+                About Doctor
+              </h2>
+
+              <img
+                className="w-4"
+                src={assets.info_icon}
+                alt=""
+              />
             </div>
+
+            <p className="text-slate-600 leading-8 max-w-3xl">
+              {docInfo.about}
+            </p>
+          </div>
+
+          {/* Fee Card */}
+          <div className="mt-8">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-6 py-3 rounded-2xl shadow-lg">
+              <span className="font-medium">
+                Consultation Fee:
+              </span>
+
+              <span className="font-bold text-lg">
+                ₹ {docInfo.fees}
+              </span>
+            </div>
+          </div>
 
         </div>
-        {/* booking slots */}
-        <div className="sm:ml-72 sm:pl-4 mt-4 font-medium text-gray-700"> 
-            <p>Booking slots</p>
+      </div>
+    </div>
 
-            <div className="flex gap-3 items-center w-full overflow-x-scroll mt-4">
-                {
-                    docSlots.length&&docSlots.map((item,index)=>(
-                        <div onClick={()=>setSlotIndex(index)}
-                        className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex===index?'bg-primary text-white':'border border-gray-200'}`} key={index}
-                        >
-                        <p className="min-w-[60px]">{item[0] && daysOfWeek[item[0].dateTime.getDay()]}</p>
-                        
-                        <p>{item[0] && item[0].dateTime.getDate()}</p>
+    {/* Booking Section */}
+    <div className="max-w-7xl mx-auto mt-14">
 
-                        </div>
-                        
-                    ))
-                }
+      <div className="bg-white/70 backdrop-blur-md rounded-[32px] p-8 shadow-xl border border-blue-100">
 
-            </div>
-             <div className='flex items-center gap-3 w-full overflow-x-scroll mt-4'>
+        <h2 className="text-2xl font-bold text-slate-800 mb-2">
+          Select Appointment Slot
+        </h2>
+
+        <p className="text-slate-500 mb-8">
+          Choose a convenient date and time for your consultation.
+        </p>
+
+        {/* Date Selection */}
+        <div className="flex gap-4 overflow-x-auto pb-3">
+
           {
-            docSlots.length && docSlots[slotIndex].map((item, index) => (
-              <p onClick={() => setSlotTime(item.time)} className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-primary text-white' : 'text-gray-400 border border-gray-300'}`} key={index}>
-                {item.time.toLowerCase()}
-              </p>
+            docSlots.length &&
+            docSlots.map((item, index) => (
+              <div
+                key={index}
+                onClick={() => setSlotIndex(index)}
+                className={`min-w-[90px] cursor-pointer rounded-3xl transition-all duration-300 text-center py-5 px-3 border ${
+                  slotIndex === index
+                    ? "bg-gradient-to-br from-cyan-500 to-blue-600 text-white border-transparent shadow-xl scale-105"
+                    : "bg-white text-slate-700 border-slate-200 hover:border-cyan-300 hover:shadow-md"
+                }`}
+              >
+                <p className="text-sm font-medium">
+                  {item[0] &&
+                    daysOfWeek[item[0].dateTime.getDay()]}
+                </p>
+
+                <p className="text-xl font-bold mt-1">
+                  {item[0] &&
+                    item[0].dateTime.getDate()}
+                </p>
+              </div>
             ))
           }
+
         </div>
-         <button onClick={bookAppointment}className="bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6">Book an appointment</button>
+
+        {/* Time Selection */}
+        <div className="flex gap-3 overflow-x-auto mt-8 pb-3">
+
+          {
+            docSlots.length &&
+            docSlots[slotIndex].map((item, index) => (
+              <button
+                key={index}
+                onClick={() => setSlotTime(item.time)}
+                className={`px-6 py-3 rounded-full whitespace-nowrap transition-all duration-300 ${
+                  item.time === slotTime
+                    ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg"
+                    : "bg-white border border-slate-200 text-slate-600 hover:border-cyan-400 hover:text-cyan-600"
+                }`}
+              >
+                {item.time.toLowerCase()}
+              </button>
+            ))
+          }
+
         </div>
+
+        {/* Book Button */}
+        <div className="mt-10">
+          <button
+            onClick={bookAppointment}
+            className="bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 text-white px-10 md:px-16 py-4 rounded-full font-medium shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300"
+          >
+            Book Appointment
+          </button>
         </div>
-    )
+
+      </div>
+
+    </div>
+
+  </div>
+)
 }
 export default Appointment
