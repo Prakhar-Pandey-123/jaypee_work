@@ -1,36 +1,111 @@
-import React, { useContext } from "react"
-import { useNavigate } from "react-router-dom"
-import {AppContext} from "../context/AppContext"
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
+const TopDoctors = () => {
+  const navigate = useNavigate();
+  const { doctors } = useContext(AppContext);
 
-const TopDoctors=()=>{
-    const navigate=useNavigate()
-    const {doctors}=useContext(AppContext)
-    
- return (
-    <div className='flex flex-col items-center gap-4 my-16 text-gray-900 md:mx-10'>
-      <h1 className='text-3xl font-medium'>Top Doctors to Book</h1>
-      <p className='sm:w-1/3 text-center text-sm'>Simply browse through our extensive list of trusted doctors.</p>
+  return (
+    <section className="py-24 bg-gradient-to-b from-slate-50 to-cyan-50">
 
-      <div className='w-full grid grid-cols-auto gap-4 pt-5 gap-y-6 px-3 sm:px-0'>
-        {doctors.slice(0,10).map((item, index) => (
-          <div onClick={() => { navigate(`/appointment/${item._id}`); scrollTo(0,0) }} className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500' key={index}>
-            <img className='bg-blue-50' src={item.image} alt="" />
-            <div className='p-4'>
-              <div className='flex items-center gap-2 text-sm text-center text-green-500'>
-        {/* for that dot before available */}
-                <p className='w-2 h-2 bg-green-500 rounded-full'></p>
-                <p className=''>Available</p>
-              </div>
-              <p className='text-gray-900 text-lg font-medium'>{item.name}</p>
-              <p className='text-gray-600 text-sm'>{item.speciality}</p>
-            </div>
+      <div className="max-w-7xl mx-auto px-6">
+
+        {/* Top Layout */}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-14">
+
+          <div>
+            <p className="text-cyan-600 font-semibold uppercase tracking-[4px]">
+              Our Specialists
+            </p>
+
+            <h2 className="text-5xl font-bold text-slate-800 mt-3">
+              Meet Our Medical Experts
+            </h2>
+
+            <p className="text-slate-600 mt-4 max-w-xl">
+              Experienced doctors dedicated to delivering exceptional care and
+              personalized treatment.
+            </p>
           </div>
-        ))}
+
+          <button
+            onClick={() => {
+              navigate("/doctors");
+              scrollTo(0, 0);
+            }}
+            className="px-8 py-4 rounded-2xl bg-slate-900 text-white hover:bg-slate-700 transition"
+          >
+            View All Doctors
+          </button>
+
+        </div>
+
+        {/* Horizontal Cards */}
+        <div className="flex gap-8 overflow-x-auto pb-6">
+
+          {doctors.slice(0, 10).map((item) => (
+            <div
+              key={item._id}
+              onClick={() => {
+                navigate(`/appointment/${item._id}`);
+                scrollTo(0, 0);
+              }}
+              className="min-w-[320px] bg-white rounded-[35px] overflow-hidden shadow-xl cursor-pointer hover:-translate-y-3 transition-all duration-500"
+            >
+
+              {/* Doctor Image */}
+              <div className="h-72 bg-gradient-to-br from-cyan-400 to-blue-600">
+
+                <img
+                  src={item.image}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+
+              </div>
+
+              {/* Doctor Info */}
+              <div className="p-6">
+
+                <div className="flex justify-between items-center mb-4">
+
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+                    <span className="text-green-600 font-medium">
+                      Available
+                    </span>
+                  </div>
+
+                  <span className="bg-cyan-50 text-cyan-700 px-3 py-1 rounded-full text-sm">
+                    Specialist
+                  </span>
+
+                </div>
+
+                <h3 className="text-2xl font-bold text-slate-800">
+                  {item.name}
+                </h3>
+
+                <p className="text-slate-500 mt-2">
+                  {item.speciality}
+                </p>
+
+                <button className="mt-6 w-full py-3 rounded-2xl bg-slate-100 hover:bg-slate-900 hover:text-white transition">
+                  Book Appointment
+                </button>
+
+              </div>
+
+            </div>
+          ))}
+
+        </div>
+
       </div>
-      <button onClick={() => { navigate('/doctors'); scrollTo(0,0) }} className='bg-blue-50 text-gray-600 px-12 py-3 rounded-full mt-10'>more</button>
-      {/* then added smooth  scroll in index.html*/}
-    </div>
-  )
-}
-export default TopDoctors
+
+    </section>
+  );
+};
+
+export default TopDoctors;

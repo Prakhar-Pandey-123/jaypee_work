@@ -27,7 +27,7 @@ const About = () => {
           <img
             className="w-full rounded-[32px] shadow-2xl hover:scale-[1.02] transition-all duration-500"
             src={assets.about_image}
-            alt="About Prescripto"
+            alt="About Medi-Book"
           />
         </div>
 
@@ -38,7 +38,7 @@ const About = () => {
 
           <div className="space-y-5 text-slate-700 leading-8">
             <p>
-              Welcome to Prescripto, your trusted healthcare companion designed
+              Welcome to Medi-Book, your trusted healthcare companion designed
               to make accessing medical services easier, faster, and more
               convenient than ever before.
             </p>
@@ -51,7 +51,7 @@ const About = () => {
             </p>
 
             <p>
-              By combining technology with patient-centered care, Prescripto
+              By combining technology with patient-centered care, Medi-Book
               helps users connect with qualified healthcare professionals,
               schedule appointments effortlessly, and stay informed throughout
               their healthcare journey.

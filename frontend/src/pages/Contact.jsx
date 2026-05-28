@@ -72,7 +72,7 @@ const Contact = () => {
 
             <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 shadow-md">
               <h3 className="text-lg font-semibold text-slate-800 mb-3">
-                Careers at Prescripto
+                Careers at Medi-Book
               </h3>
 
               <p className="text-slate-600 leading-7">

@@ -114,51 +114,175 @@ const MyAppointments = () => {
     }
   }
   
-  return (
-    <div>
-      <p className='pb-3 mt-12 font-medium text-zinc-700 border-b'>My appointments</p>
-      <div>
-        {appointments.map((item, index) => (
-          <div className='grid grid-cols-[1fr_2fr] gap-4 sm:flex sm:gap-6 py-2 border-b' key={index}>
-            <div>
-              <img className='w-32 bg-indigo-50' src={item.docData.image} alt="" />
-            </div>
+ return (
+  <div className="min-h-screen bg-gradient-to-b from-sky-50 via-blue-50 to-cyan-50 px-4 md:px-8 py-10">
 
-            <div className='flex-1 text-sm text-zinc-600'>
-              <p className='text-neutral-800 font-semibold'>{item.name}</p>
-              <p>{item.docData.speciality}</p>
-              <p className='text-zinc-700 font-medium mt-1'>Address:</p>
-              <p className='text-xs'>{item.docData.address.line1}</p>
-              <p className='text-xs'>{item.docData.address.line2}</p>
-              <p className='text-sm mt-1'><span className='text-sm text-neutral-700 font-medium'>Date & Time:</span> {item.slotDate} | {item.slotTime} </p>
-            </div>
+    {/* Hero Section */}
+    <div className="text-center mb-14">
+      <p className="text-primary font-semibold uppercase tracking-[5px]">
+        My Appointments
+      </p>
 
-            <div></div>
+      <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mt-4">
+        Manage Your Healthcare Journey
+      </h1>
 
-            <div className='flex flex-col gap-2 justify-end'>
-              {
-                !item.cancelled && item.payment&&
-                <button className='sm:min-w-48 py-2 border rounded text-stone-500 bg-indigo-200 '>
-                  Paid
-                </button>
-              }
-               {!item.cancelled &&
-               !item.payment && 
-                <button onClick={()=>appointmentRazorpay(item._id)} className='text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-primary hover:text-white transition-all duration-300'>Pay Online</button>}
-               {
-                !item.cancelled && 
-                <button onClick={() => cancelAppointment(item._id)} className='text-sm text-stone-500 sm:min-w-48 py-2 border rounded hover:bg-red-600 hover:text-white transition-all duration-300 px-1'>Cancel Appointment</button>
-               }
-               {
-                item.cancelled && <button className='sm:min-w-48 py-2 border border-red-500 text-red-500 bg-red-200 rounded-md px-1'>Appointment Cancelled</button>
-               }
-            
-            </div>
-          </div>
-        ))}
-      </div>
+      <p className="max-w-3xl mx-auto mt-5 text-slate-600 text-lg leading-8">
+        View upcoming consultations, manage appointments, and securely complete
+        payments from one place.
+      </p>
     </div>
-  )
+
+    {/* Appointments List */}
+    <div className="max-w-7xl mx-auto">
+
+      {appointments.length > 0 ? (
+        <div className="space-y-8">
+
+          {appointments.map((item, index) => (
+            <div
+              key={index}
+              className="bg-white/70 backdrop-blur-md rounded-[32px] shadow-xl border border-blue-100 overflow-hidden hover:shadow-2xl transition-all duration-300"
+            >
+
+              <div className="flex flex-col lg:flex-row gap-8 p-6 md:p-8">
+
+                {/* Doctor Image */}
+                <div className="lg:w-[220px]">
+                  <div className="rounded-[28px] overflow-hidden bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600">
+                    <img
+                      className="w-full h-[250px] object-cover"
+                      src={item.docData.image}
+                      alt=""
+                    />
+                  </div>
+                </div>
+
+                {/* Doctor Details */}
+                <div className="flex-1">
+
+                  <div className="flex flex-wrap items-center gap-3 mb-4">
+
+                    <h2 className="text-2xl font-bold text-slate-800">
+                      {item.name}
+                    </h2>
+
+                    {!item.cancelled && (
+                      <span className="px-4 py-1 rounded-full bg-green-100 text-green-700 text-sm font-medium">
+                        Scheduled
+                      </span>
+                    )}
+
+                    {item.cancelled && (
+                      <span className="px-4 py-1 rounded-full bg-red-100 text-red-700 text-sm font-medium">
+                        Cancelled
+                      </span>
+                    )}
+                  </div>
+
+                  <p className="text-cyan-600 font-medium text-lg">
+                    {item.docData.speciality}
+                  </p>
+
+                  <div className="mt-6">
+
+                    <p className="text-slate-700 font-semibold mb-2">
+                      Clinic Address
+                    </p>
+
+                    <p className="text-slate-500">
+                      {item.docData.address.line1}
+                    </p>
+
+                    <p className="text-slate-500">
+                      {item.docData.address.line2}
+                    </p>
+
+                  </div>
+
+                  <div className="mt-6 flex flex-wrap gap-4">
+
+                    <div className="bg-blue-50 px-5 py-3 rounded-2xl">
+                      <p className="text-xs text-slate-500">
+                        Appointment Date
+                      </p>
+                      <p className="font-semibold text-slate-800">
+                        {item.slotDate}
+                      </p>
+                    </div>
+
+                    <div className="bg-cyan-50 px-5 py-3 rounded-2xl">
+                      <p className="text-xs text-slate-500">
+                        Appointment Time
+                      </p>
+                      <p className="font-semibold text-slate-800">
+                        {item.slotTime}
+                      </p>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col justify-center gap-3 lg:w-[220px]">
+
+                  {!item.cancelled && item.payment && (
+                    <button className="w-full py-3 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-medium shadow-lg">
+                      Payment Completed
+                    </button>
+                  )}
+
+                  {!item.cancelled && !item.payment && (
+                    <button
+                      onClick={() => appointmentRazorpay(item._id)}
+                      className="w-full py-3 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 text-white font-medium shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
+                    >
+                      Pay Online
+                    </button>
+                  )}
+
+                  {!item.cancelled && (
+                    <button
+                      onClick={() => cancelAppointment(item._id)}
+                      className="w-full py-3 rounded-2xl border border-red-300 text-red-600 hover:bg-red-500 hover:text-white transition-all duration-300"
+                    >
+                      Cancel Appointment
+                    </button>
+                  )}
+
+                  {item.cancelled && (
+                    <button className="w-full py-3 rounded-2xl bg-red-100 text-red-600 font-medium border border-red-300">
+                      Appointment Cancelled
+                    </button>
+                  )}
+
+                </div>
+
+              </div>
+            </div>
+          ))}
+
+        </div>
+      ) : (
+        <div className="bg-white/70 backdrop-blur-md rounded-[32px] shadow-xl border border-blue-100 py-20 text-center">
+
+          <h2 className="text-3xl font-bold text-slate-800">
+            No Appointments Found
+          </h2>
+
+          <p className="text-slate-500 mt-4 max-w-xl mx-auto">
+            You haven't booked any appointments yet. Explore our specialists
+            and schedule your first consultation.
+          </p>
+
+        </div>
+      )}
+
+    </div>
+
+  </div>
+);
 }
 
 export default MyAppointments

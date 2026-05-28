@@ -17,16 +17,18 @@ localStorage.removeItem(token);
   const [showMenu, setShowMenu] = useState(false);
   return (
     <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400 relative z-50'>
-      <img onClick={() => navigate('/')} className='w-44 cursor-pointer' src={assets.logo} alt="" />
+      <div onClick={() => navigate('/')} className='w-50 h-50 text-2xl bg-blue cursor-pointer'  >Medi-Book
+        </div>
       <ul className='hidden md:flex items-start gap-5 font-medium'>
   <li className='py-1'>
     <NavLink to='/'>HOME</NavLink>
   </li>
-  <li className='py-1'>
-    <NavLink to='/doctors'>ALL DOCTORS</NavLink>
-  </li>
+  
   <li className='py-1'>
     <NavLink to='/about'>ABOUT</NavLink>
+  </li>
+  <li className='py-1'>
+    <NavLink to='/doctors'>ALL DOCTORS</NavLink>
   </li>
   <li className='py-1'>
     <NavLink to='/contact'>CONTACT</NavLink>

@@ -1,29 +1,84 @@
-import React from 'react'
-import { assets } from '../assets/assets'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { assets } from "../assets/assets";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
-
   const navigate = useNavigate();
 
   return (
-    <div className='flex bg-primary rounded-lg px-6 sm:px-10 md:px-14 lg:px-12 my-20 md:mx-10'>
-      {/* Left Side  */}
-      {/* flex-1 = lets say the parent has width of 100px and 3 children consumes 90px so last 10 px will be left free , but if u use flex-1 the last 10px is consumed by children as the children will grow in size */}
-      <div className=' flex-1 py-8 sm:py-10 md:py-16 lg:py-24 lg:pl-5'>
-        <div className='text-xl sm:text-2xl md:text-3xl lg:text-5xl font-semibold text-white'>
-          <p className=''>Book Appointment </p>
-          <p className='mt-4'>With 100+ Trusted Doctors</p>
+    <section className="my-20 px-4">
+      <div className="relative overflow-hidden rounded-[32px] bg-gradient-to-r from-cyan-600 to-blue-700 max-w-6xl mx-auto">
+
+        {/* Background Blur */}
+        <div className="absolute -top-16 -right-16 w-52 h-52 bg-white/10 rounded-full blur-3xl"></div>
+
+        <div className="grid md:grid-cols-2 items-center gap-8 px-8 md:px-12 py-10">
+
+          {/* Left Content */}
+          <div>
+
+            <div className="inline-block bg-white/15 backdrop-blur-md px-4 py-2 rounded-full mb-4">
+              <p className="text-white text-xs font-medium">
+                Trusted Healthcare Platform
+              </p>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+              Find The Right Doctor
+              <br />
+              For Your Health
+            </h2>
+
+            <p className="text-blue-100 mt-4 leading-7">
+              Book appointments with trusted specialists and get quality
+              healthcare whenever you need it.
+            </p>
+
+            <button
+              onClick={() => {
+                navigate("/login");
+                scrollTo(0, 0);
+              }}
+              className="mt-6 bg-white text-slate-800 px-7 py-3 rounded-xl font-medium hover:scale-105 transition-all duration-300"
+            >
+              Create Account
+            </button>
+
+          </div>
+
+          {/* Right Content */}
+          <div className="relative flex justify-center">
+
+            <div className="absolute top-4 left-0 bg-white rounded-2xl px-4 py-3 shadow-lg hidden lg:block">
+              <p className="text-xl font-bold text-slate-800">
+                100+
+              </p>
+              <p className="text-xs text-slate-500">
+                Doctors
+              </p>
+            </div>
+
+            <img
+              src={assets.appointment_img}
+              alt=""
+              className="w-[260px] md:w-[320px]"
+            />
+
+            <div className="absolute bottom-4 right-0 bg-white rounded-2xl px-4 py-3 shadow-lg hidden lg:block">
+              <p className="text-xl font-bold text-slate-800">
+                4.9★
+              </p>
+              <p className="text-xs text-slate-500">
+                Rating
+              </p>
+            </div>
+
+          </div>
+
         </div>
-        <button onClick={() => {navigate('/login'); scrollTo(0,0)}} className='bg-white text-sm sm:text-base text-gray-600 px-8 py-3 rounded-full mt-6 hover:scale-105 transition-all'>Create account</button>
       </div>
+    </section>
+  );
+};
 
-      {/* Right Side  */}
-      <div className='hidden md:block md:w-1/2 lg:w-[370px] relative'>
-        <img className='w-full absolute bottom-0 right-0 max-w-md' src={assets.appointment_img} alt="" />
-      </div>
-    </div>
-  )
-}
-
-export default Banner
+export default Banner;

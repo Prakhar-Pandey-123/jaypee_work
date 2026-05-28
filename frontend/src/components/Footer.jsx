@@ -12,7 +12,7 @@ const Footer=()=>{
         <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm">
             {/* left section */}
             <div>
-                <img className="mb-5 w-40" src={assets.logo} alt=""></img>
+                <div className="mb-5 w-40 text-3xl"  alt="">Medi-Book</div>
         <p className="w-full md:w-2/3 text-gray-600 leading-6">The sole purpose of this website is to help patients to book an appointment with a specialized doctor in just one click, simplifying the entire process of scheduling a doctor’s appointment.</p>
             </div>
             {/* center section */}
