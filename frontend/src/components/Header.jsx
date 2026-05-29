@@ -63,7 +63,7 @@ const Header = () => {
 
             <img
               className="w-32"
-              src={assets.group_profiles}
+              // src={assets.group_profiles}
               alt=""
             />
 
