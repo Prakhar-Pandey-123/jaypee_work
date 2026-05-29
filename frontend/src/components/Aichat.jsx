@@ -9,9 +9,10 @@ function Aichat() {
   const [messages, setMessages] = useState([]);
 
   const seeDoc = async () => {
+     const {backendUrl}=useContext(AppContext);
     const docName = "Dr Rahul Sharama";
     try {
-      const res = await axios.post("http://localhost:4000/api/user/getDoc", {
+      const res = await axios.post(backendUrl+'/api/user/getDoc', {
         docName: docName,
       });
 
@@ -31,7 +32,7 @@ function Aichat() {
 
     setInput("");
     try {
-      const res = await fetch("http://localhost:4000/chat", {
+      const res = await fetch(backendUrl+"/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text }),
@@ -130,7 +131,7 @@ export default Aichat;
 //   const seeDoc=async()=>{
 //     const docName="Dr Rahul Sharama";
 //       try{
-//         const res=await axios.post("http://localhost:4000/api/user/getDoc",{
+//         const res=await axios.post("http://:4000/api/user/getDoc",{
 //           docName:docName          
 //         })
 //         console.log("res=",res);
@@ -151,7 +152,7 @@ export default Aichat;
 
 //     setInput("");
 //     try{
-//       const res=await fetch("http://localhost:4000/chat",{
+//       const res=await fetch("http://:4000/chat",{
 //         method:"POST",
 //         headers:{"Content-Type":"application/json"},
 //         body:JSON.stringify({message:text}),
