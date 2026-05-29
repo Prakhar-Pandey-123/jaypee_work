@@ -1,3 +1,4 @@
+https://jaypee-work.vercel.app/
 # Smart AI Doctor Appointment System
 
 A full-stack MERN-based healthcare platform that allows patients to book appointments with doctors, doctors to manage appointments, and administrators to manage the platform. In addition to the core appointment booking system, an AI-powered symptom assistant helps users identify relevant medical specializations and find suitable doctors.
