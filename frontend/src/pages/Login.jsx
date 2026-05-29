@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   const { token, setToken } = useContext(AppContext);
-   const {backendUr}=useContext(AppContext);
+   const {backendUrl}=useContext(AppContext);
   const navigate = useNavigate();
 
   const [state, setState] = useState("Sign Up");
